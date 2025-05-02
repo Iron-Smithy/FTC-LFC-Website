@@ -1,0 +1,29 @@
+[
+    {
+        "src": "assets/images/selfie.jpg",
+        "title": "Selfie",
+        "desc": "A selfie of me..."
+    },
+    {
+        "src": "assets/images/robot.jpg",
+        "title": "Robot",
+        "desc": "The robot is a friend..."
+    },
+    {
+        "src": "assets/images/zeTeam.jpg",
+        "title": "Ze Team",
+        "desc": "Friends are the best..."
+    },
+    {
+        "src": "assets/images/json.png",
+        "title": "JSON",
+        "desc": "CODE!!!",
+        "fit": "contain"
+    },
+    {
+        "src": "assets/images/7_9o24.jpg",
+        "title": "7_9o24",
+        "desc": "¯\\_(ツ)_/¯"
+    }
+  ]
+  
