@@ -7,7 +7,6 @@ media.addEventListener('change', (e) => updateNavbar(e))
 
 function updateNavbar(e){
     const isMobile = e.matches
-    console.log(isMobile)
     if(isMobile){
         navbar.setAttribute('inert', '')
     }
@@ -58,11 +57,25 @@ function updateCarousel() {
     descEl.textContent = current.desc;
     imgEl.style.objectFit = current.fit || "cover";
 }
+function toggleDropdown(event) {
+    event.stopPropagation(); // Prevent body click from closing it immediately
+    const dropdown = event.currentTarget.nextElementSibling;
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
 
-const secretPassword = "arrowdownarrowleftarrowuparrowdownarrowup";
-let inputSequence = ''; // down left up down up
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function handleClickOutside(e) {
+        if (!dropdown.contains(e.target)) {
+            dropdown.style.display = 'none';
+            document.removeEventListener('click', handleClickOutside);
+        }
+    });
+}
+
+const secretPassword = "arrowdownarrowleftarrowuparrowdownarrowup"; // down left up down up
+let inputSequence = '';
 document.addEventListener('keydown', (e) => {
     inputSequence = (inputSequence + e.key.toLowerCase()).slice(-secretPassword.length);
+    console.log(inputSequence);
     if (inputSequence === secretPassword) {
         window.location.href = '(•‿•).html'; 
         // window.open('https://www.cool.com', '_blank');

@@ -15,27 +15,57 @@ html {
     scroll-behavior: smooth; /*For bookmark links*/
 }
 body {
-    min-height: 100vh;
-    min-height: 100dvh;
     background-color: var(--primary-color);
 }
 main {
     padding: min(5em, 7%);
+    margin-top: 100px; /* Add margin to prevent content from overlapping the fixed header */
 }
 
-nav {
-    background-color: var(--primary-color);
-    border-bottom: 1px solid var(--hover-color);
-}
+
+/* Header */
 header {
     list-style: none;
     display: flex;
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure it spans the full width */
+    z-index: 100; /* Ensure it stays above other elements */
+    background-color: var(--primary-color); /* Match the background color */
+    border-bottom: 1px solid var(--hover-color); /* Keep the border */
+    padding: 0.5em 1em; /* Add some padding for spacing */
 }
-header #logo {
+#logo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    text-decoration: none;
     margin-right: auto;
+}
+#logoImg {
+    margin-right: auto;
+    height: 5em;
+    display: block;
+    align-self: center;
+}
+#logoText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: var(--text-color);
+}
+nav {
+    background-color: var(--primary-color);
+}
+nav ul {
+    display: flex; /* Ensure list items are aligned horizontally */
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
 }
 nav li {
     display: flex;
+    margin: 0; /* Ensure no extra spacing between list items */
 }
 nav a {
     display: flex;
@@ -47,9 +77,6 @@ nav a {
 nav a:hover {
     background-color: var(--hover-color);
 }
-nav a.accent-link {
-    background-color: var(--accent-color);
-}
 #open-sidebar-button {
     display: none;
     background: none;
@@ -57,6 +84,7 @@ nav a.accent-link {
     padding: 1em;
     margin-left: auto;
     cursor: pointer;
+    fill: var(--text-color);
 }
 #close-sidebar-button {
     display: none;
@@ -72,8 +100,49 @@ nav a.accent-link {
     z-index: 99;
     display: none;
 }
+/* Dropdown wrapper styles */
+.dropdown-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 1em 2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
 
-@media screen and (max-width: 700px) {
+nav li {
+    position: relative; /* Needed for absolute dropdown */
+}
+
+.dropdown {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    border: 1px solid var(--hover-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 200;
+    width: max-content;
+}
+
+.dropdown li {
+    width: 100%;
+}
+
+.dropdown li a {
+    padding: 0.75em 1em;
+}
+nav li:hover .dropdown {
+    max-height: 500px; /* Make sure this is larger than any content you expect */
+    opacity: 1;
+}
+
+@media screen and (max-width: 806px) {
     #open-sidebar-button, #close-sidebar-button {
         display: block;
     }
@@ -105,6 +174,8 @@ nav a.accent-link {
         margin-right: unset;
     }
 }
+
+
 /* Carousel */
 .carousel-container {
     display: flex;
@@ -121,6 +192,7 @@ nav a.accent-link {
     border: none;
     font-size: 2rem;
     cursor: pointer;
+    fill: var(--text-color);
 }
 .carousel-image-box {
     flex: 0 1 auto;
@@ -151,7 +223,11 @@ nav a.accent-link {
     stroke: var(--hover-color);
     fill: var(--hover-color);
 }
-#sidebar li:not(.dropdown):hover, #sidebar li:not(.dropdown):hover span, #sidebar li.dropdown:hover .dropdown-btn {
+#logoText:hover {
+    color: var(--hover-color);
+}
+
+/* #sidebar li:not(.dropdown):hover, #sidebar li:not(.dropdown):hover span, #sidebar li.dropdown:hover .dropdown-btn {
     background-color: var(--hover-color);
     color: var(--accent-color);
-}
+} */
